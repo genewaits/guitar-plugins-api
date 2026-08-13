@@ -5,7 +5,7 @@ Welcome to the **Tone Lord API** — the ultimate, slightly arrogant REST API co
 This project demonstrates the core principles of API-First development, proper REST architecture, and clean data modeling for an online catalog of guitar VST/AU plugins and audio effects.
 
 ## 🔗 Live Documentation
-👉👉 **View Interactive API Documentation on Bump.sh**] (https://bump.sh/waits/doc/tone-lord-api)**
+👉👉 **View Interactive API Documentation on Bump.sh** (https://bump.sh/waits/doc/tone-lord-api)**
 
 ---
 
