@@ -1,48 +1,117 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>Guitar Plugins API Documentation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://googleapis.com|Roboto:300,400,700" rel="stylesheet">
-  <style> body { margin: 0; padding: 0; } </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Tone Lord API Documentation</title>
+  <!-- Подключаем бесплатный плеер Stoplight Elements -->
+  <script src="https://unpkg.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com" />
 </head>
 <body>
 
-  <!-- Наш встроенный OpenAPI файл. Теперь браузер точно его прочитает! -->
-  <script id="spec" type="application/yaml">
-openapi: 3.0.3
-info:
-  title: Guitar Plugins Catalog API
-  description: Учебный проект API-документации каталога гитарных плагинов для портфолио.
-  version: 1.0.0
-paths:
-  /plugins:
-    get:
-      summary: Получить список гитарных плагинов
-      description: Возвращает список всех доступных VST/AU плагинов в каталоге.
-      responses:
-        '200':
-          description: Успешный ответ
-  /ping:
-    get:
-      summary: Проверка связи с сервером
-      responses:
-        '200':
-          description: Сервер работает отлично!
-  </script>
+  <!-- Плеер, в который мы намертво вшили наш проект через переменную. Никаких внешних загрузок! -->
+  <elements-api id="docs" router="hash" layout="sidebar" />
 
-  <!-- Подключаем плеер Redoc -->
-  <div id="redoc-container"></div>
-  <script src="https://redoc.ly"></script>
-  
   <script>
-    const specElement = document.getElementById('spec');
-    Redoc.init(specElement.textContent, {
-      scrollYOffset: 50,
-      hideDownloadButton: true,
-      theme: { colors: { primary: { main: '#10b981' } } }
-    }, document.getElementById('redoc-container'))
+    const apiSpec = {
+      "openapi": "3.0.3",
+      "info": {
+        "title": "Tone Lord API",
+        "description": "The ultimate, slightly arrogant REST API contract for bedroom shredders and true tone chasers who traded heavy tube amplifiers for digital perfection.",
+        "version": "1.0.0"
+      },
+      "components": {
+        "securitySchemes": {
+          "AdminToken": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "description": "Enter your administrator JWT token to access write operations."
+          }
+        },
+        "schemas": {
+          "Plugin": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer", "description": "Unique database identifier", "example": 1 },
+              "name": { "type": "string", "description": "Full name of the plugin", "example": "Archetype: Plini X" },
+              "brand": { "type": "string", "description": "Company name", "example": "Neural DSP" },
+              "category": { "type": "string", "description": "Type of processing software", "example": "Amp Simulator" },
+              "price_usd": { "type": "number", "description": "Retail price in USD", "example": 119.00 },
+              "has_demo": { "type": "boolean", "description": "Free trial available?", "example": true },
+              "formats": { "type": "array", "items": { "type": "string" }, "example": ["VST3", "AU", "Standalone"] },
+              "included_gear": {
+                "type": "object",
+                "properties": {
+                  "amplifiers": { "type": "array", "items": { "type": "string" }, "example": ["Clean Amp", "Lead Amp"] },
+                  "effects": { "type": "array", "items": { "type": "string" }, "example": ["Overdrive", "Delay"] }
+                }
+              }
+            }
+          },
+          "PluginInput": {
+            "type": "object",
+            "required": ["name", "brand", "category", "price_usd"],
+            "properties": {
+              "name": { "type": "string", "example": "Tone King Imperial MKII" },
+              "brand": { "type": "string", "example": "Neural DSP" },
+              "category": { "type": "string", "example": "Amp Simulator" },
+              "price_usd": { "type": "number", "example": 99.00 },
+              "has_demo": { "type": "boolean", "example": true },
+              "formats": { "type": "array", "items": { "type": "string" }, "example": ["VST3", "AU"] }
+            }
+          }
+        }
+      },
+      "paths": {
+        "/plugins": {
+          "get": {
+            "summary": "Get all guitar plugins",
+            "description": "Returns a list of all available plugins with optional filtering.",
+            "parameters": [
+              { "name": "brand", "in": "query", "required": false, "schema": { "type": "string" }, "example": "Neural DSP" },
+              { "name": "category", "in": "query", "required": false, "schema": { "type": "string" }, "example": "Amp Simulator" }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Plugin" } } } }
+              }
+            }
+          },
+          "post": {
+            "summary": "Add a new plugin to the catalog",
+            "description": "Creates a new entry. Requires administrator privileges.",
+            "security": [{ "AdminToken": [] }],
+            "requestBody": {
+              "required": true,
+              "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PluginInput" } } }
+            },
+            "responses": {
+              "201": { "description": "Created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Plugin" } } } },
+              "401": { "description": "Unauthorized" },
+              "403": { "description": "Forbidden" }
+            }
+          }
+        },
+        "/plugins/{id}": {
+          "get": {
+            "summary": "Get plugin details by ID",
+            "parameters": [
+              { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+            ],
+            "responses": {
+              "200": { "description": "Found successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Plugin" } } } },
+              "404": { "description": "Not Found" }
+            }
+          }
+        }
+      }
+    };
+
+    // Передаем наш готовый JSON-объект напрямую в плеер документации
+    document.getElementById('docs').apiDescriptionDocument = apiSpec;
   </script>
 </body>
 </html>
