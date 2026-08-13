@@ -1,26 +1,92 @@
-# 🎸 Tone Lord API Specification
+🎸 Tone Lord API Specification
 
-Welcome to the **Tone Lord API** — the ultimate, slightly arrogant REST API contract designed for bedroom shredders and true tone chasers who traded heavy, expensive tube amplifiers for digital bedroom perfection. 
+Welcome to the Tone Lord API — the ultimate, slightly arrogant REST API contract designed for bedroom shredders and true tone chasers who traded heavy, expensive tube amplifiers for digital bedroom perfection.
 
-This project demonstrates the core principles of API-First development, proper REST architecture, and clean data modeling for an online catalog of guitar VST/AU plugins and audio effects.
+Yes, it is fictional.
+Yes, the tone is intentionally overconfident.
+And yes, someone had to document the guitar plugins.
 
-## 🔗 Live Documentation
-👉👉 **View Interactive API Documentation on Bump.sh** (https://bump.sh/waits/doc/tone-lord-api)**
+This project is a Technical Writing portfolio case focused on creating developer-facing API documentation from an OpenAPI specification.
 
----
+🔗 Live Documentation
 
-## 🛠️ Tech Stack & Standards
-* **Specification:** OpenAPI 3.0.3 (OAS3)
-* **Format:** YAML
-* **Architecture Style:** RESTful API
-* **Design Philosophy:** API-First / Design-First
+👉 View the interactive API documentation on Bump.sh
 
----
+🎯 Project Goals
 
-## 📖 Business Logic & Key Features
+The goal was to create clear, usable API documentation that allows a developer to:
 
-* **Complete CRUD Blueprint:** Contains detailed paths for exploring the full catalog (`GET /plugins`), viewing specific gear configurations (`GET /plugins/{id}`), and modifying entries (`POST /plugins`).
-* **Advanced Data Modeling:** Demonstrates nested object arrays representing real-world virtual gear stacks (including dedicated lists for virtual amplifiers, cabinets, and stompboxes).
-* **Granular Filtering:** Built-in support for query parameters to easily filter the catalog by manufacturer (`brand`) or software type (`category`).
-* **Role-Based Security Simulator:** Features a simulated `Bearer Token (JWT)` authentication layer. Public users have read-only access to discover tones, while write operations (`POST`) are restricted to verified `AdminToken` holders.
-* **Robust Error Handling:** Explicitly documents edge-case responses, including `401 Unauthorized`, `403 Forbidden`, and `404 Not Found` statuses.
+* understand what the API provides;
+* authenticate with the API;
+* discover available endpoints;
+* understand request parameters and schemas;
+* construct API requests;
+* interpret responses and error codes.
+
+The project also explores how a consistent information structure and a deliberate tone of voice can coexist in developer documentation.
+
+🛠️ Tools & Standards
+
+* OpenAPI 3.0.3 (OAS3)
+* YAML
+* REST API
+* Git / GitHub
+* Bump.sh
+* API-first / design-first approach
+
+📖 API Overview
+
+Tone Lord API provides a catalog of guitar VST/AU plugins and audio effects.
+
+The specification includes endpoints for:
+
+* retrieving the plugin catalog (GET /plugins);
+* viewing an individual plugin (GET /plugins/{id});
+* adding new plugins (POST /plugins);
+* filtering the catalog by manufacturer or category.
+
+The data model includes nested objects representing virtual amplifiers, cabinets, and stompboxes.
+
+🔐 Authentication & Permissions
+
+The API uses a simulated Bearer Token (JWT) authentication model.
+
+Public users can access read-only operations, while write operations require an administrator token.
+
+The documentation also describes common error responses, including:
+
+* 401 Unauthorized
+* 403 Forbidden
+* 404 Not Found
+
+✍️ Documentation Approach
+
+This project focuses on more than describing endpoints.
+
+The documentation was structured around the needs of the intended audience: developers who need to understand the API quickly and use it correctly.
+
+Key considerations included:
+
+* task-oriented information structure;
+* consistent terminology;
+* clear request and response descriptions;
+* explicit authentication requirements;
+* documented error cases;
+* examples and schemas where they provide useful context;
+* balancing technical clarity with a deliberately informal tone of voice.
+
+🎸 Tone of Voice
+
+The API is fictional, so I used it as an opportunity to experiment with tone of voice in developer documentation.
+
+The subject matter is intentionally playful and slightly ridiculous, but the documentation itself remains structured and technically oriented.
+
+The idea is simple:
+
+The API can take itself seriously. The documentation doesn’t always have to.
+
+📌 Disclaimer
+
+This is an independent portfolio project created for educational and demonstration purposes.
+
+The Tone Lord API is fictional and is not affiliated with any real company, product, or service.
