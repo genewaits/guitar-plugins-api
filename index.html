@@ -3,16 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <title>Guitar Plugins API Documentation</title>
+  <!-- Стабильная ссылка на стили Swagger UI -->
   <link rel="stylesheet" href="https://unpkg.com" />
 </head>
 <body>
   <div id="swagger-ui"></div>
+  
+  <!-- Точные ссылки на логику Swagger UI -->
   <script src="https://unpkg.com"></script>
+  <script src="https://unpkg.com"></script>
+  
   <script>
     window.onload = () => {
       window.ui = SwaggerUIBundle({
-        url: 'openapi.yaml', // Ссылка на файл, где будет лежать наше описание API
+        url: 'openapi.yaml', // Наш файл со спецификацией
         dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout"
       });
     };
   </script>
