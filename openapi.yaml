@@ -1,7 +1,16 @@
 openapi: 3.0.3
 info:
   title: Tone Lord API
-  description: The ultimate, slightly arrogant REST API contract for bedroom shredders and true tone chasers who traded heavy tube amplifiers for digital perfection.
+  description: |
+    # 🎸 The Ultimate Quest for Tone
+    Welcome to the official **Tone Lord API** contract. This specification dictates how modern bedroom shredders and digital audio engineers interact with our premium VST/AU plugin infrastructure.
+    
+    ### ⚡ Quick Start
+    1. Explore the catalog using `GET /plugins`.
+    2. Filter by your favorite digital developer (e.g., *Neural DSP*, *STL Tones*).
+    3. To add your own custom-engineered profiles, secure an `AdminToken`.
+    
+    > **Note:** All responses are strictly returned in `application/json` format with ultra-low latency guarantees.
   version: 1.0.0
 
 components:
@@ -79,6 +88,100 @@ components:
           type: string
           example: "Amp Simulator"
         price_usd:
+          type: number
+          example: 99.00
+        has_demo:
+          type: boolean
+          example: true
+        formats:
+          type: array
+          items:
+            type: string
+          example: ["VST3", "AU"]
+
+paths:
+  /plugins:
+    get:
+      tags:
+        - "🎸 Catalog Operations"
+      summary: Get all guitar plugins
+      description: Returns a list of all available plugins, with optional filtering by brand or category. Anyone can view this list.
+      parameters:
+        - name: brand
+          in: query
+          required: false
+          description: Filter plugins by manufacturer name
+          schema:
+            type: string
+          example: "Neural DSP"
+        - name: category
+          in: query
+          required: false
+          description: Filter plugins by type
+          schema:
+            type: string
+          example: "Amp Simulator"
+      responses:
+        '200':
+          description: A successful response containing the list of plugins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plugin'
+
+    post:
+      tags:
+        - "🎛️ Admin Management"
+      summary: Add a new plugin to the catalog
+      description: Creates a new guitar plugin entry in the database. Requires administrator privileges.
+      security:
+        - AdminToken: []
+      requestBody:
+        required: true
+        description: JSON object containing the details of the new plugin
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginInput'
+      responses:
+        '201':
+          description: Plugin created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+        '401':
+          description: Unauthorized. Missing or invalid Bearer token.
+        '403':
+          description: Forbidden. You do not have administrator permissions.
+        '400':
+          description: Invalid input data.
+
+  /plugins/{id}:
+    get:
+      tags:
+        - "🎸 Catalog Operations"
+      summary: Get plugin details by ID
+      description: Returns detailed information, included gear, and formats for a single plugin.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the plugin
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Plugin details found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+        '404':
+          description: Plugin not found in the database
           type: number
           example: 99.00
         has_demo:
