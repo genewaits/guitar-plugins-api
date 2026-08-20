@@ -90,3 +90,11 @@ The API can take itself seriously. The documentation doesn’t always have to.
 This is an independent portfolio project created for educational and demonstration purposes.
 
 The Tone Lord API is fictional and is not affiliated with any real company, product, or service.
+
+Documentation goals
+
+* Provide a clear overview of the API and its resources.
+* Make endpoints easy to discover and understand.
+* Document authentication and authorization requirements.
+* Provide request parameters, response schemas, and error responses.
+* Publish the specification as interactive API documentation.
