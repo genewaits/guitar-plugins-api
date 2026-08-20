@@ -99,7 +99,7 @@ Documentation goals
 * Provide request parameters, response schemas, and error responses.
 * Publish the specification as interactive API documentation.
 
-  What I did
+What I did
 
 * Designed the information structure of the API reference.
 * Created an OpenAPI 3.0.3 specification in YAML.
