@@ -98,3 +98,12 @@ Documentation goals
 * Document authentication and authorization requirements.
 * Provide request parameters, response schemas, and error responses.
 * Publish the specification as interactive API documentation.
+
+  What I did
+
+* Designed the information structure of the API reference.
+* Created an OpenAPI 3.0.3 specification in YAML.
+* Defined endpoints, parameters, schemas, authentication, and error responses.
+* Added examples and descriptions for API consumers.
+* Published the documentation using Bump.sh.
+* Reviewed the documentation for consistency and usability.
