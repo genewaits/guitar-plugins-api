@@ -1,0 +1,89 @@
+Tone Lord API — Documentation Case Study
+
+1. Context
+
+Tone Lord API is a fictional REST API for a catalog of guitar plugins, amplifiers, cabinets, and effects.
+
+The project was created as a portfolio exercise to explore API documentation and the OpenAPI specification.
+
+2. Goal
+
+The goal was to create clear, developer-facing documentation for a fictional API and publish it as an interactive API reference.
+
+The project focuses on:
+
+* structuring technical information;
+* documenting REST API endpoints;
+* describing request parameters and response schemas;
+* documenting authentication and error responses;
+* maintaining consistent terminology;
+* publishing an OpenAPI specification as interactive documentation.
+
+3. Audience
+
+The primary audience is developers who need to understand and use the API without prior knowledge of the project.
+
+The documentation therefore focuses on making endpoints, parameters, responses, authentication requirements, and data structures easy to discover and understand.
+
+4. My Role
+
+Technical Writer
+
+I designed the documentation structure, wrote and edited the API descriptions, defined the information architecture, created the OpenAPI specification, and published the resulting documentation.
+
+The project also involved reviewing the documentation for consistency, clarity, and usability.
+
+5. Tools
+
+* OpenAPI 3.0.3
+* YAML
+* Git
+* GitHub
+* Bump.sh
+* Markdown
+
+6. Documentation Decisions
+
+I structured the documentation around the tasks an API consumer needs to complete rather than around the underlying data model.
+
+Key decisions included:
+
+* organizing endpoints by resource and operation;
+* providing clear descriptions of request parameters and response schemas;
+* documenting authentication and permission requirements separately from endpoint functionality;
+* defining common error responses such as 401, 403, and 404;
+* using consistent terminology across endpoints, parameters, and data models;
+* adding examples where they provide additional context for developers;
+* keeping the information structure consistent across different API operations.
+
+Because the API is fictional, I also used the project to experiment with tone of voice while keeping the technical information clear and predictable.
+
+7. Challenges
+
+The main challenge was turning a fictional API specification into documentation that would be useful to a developer who has no prior knowledge of the project.
+
+I had to decide which information should be explained at the API overview level and which information belonged to individual endpoints, parameters, schemas, or examples.
+
+Another challenge was maintaining consistency across nested data structures and authentication and error scenarios while keeping the documentation concise.
+
+I also experimented with balancing a deliberately playful tone with the clarity and predictability expected from developer documentation.
+
+8. Result
+
+The final result is a complete OpenAPI 3.0.3 specification published as interactive API documentation on Bump.sh.
+
+The documentation provides:
+
+* an overview of the API;
+* a quick-start section;
+* documented authentication requirements;
+* endpoint descriptions and request parameters;
+* response schemas and examples;
+* documented error responses;
+* consistent terminology and information structure.
+
+The project demonstrates my ability to structure technical information, work with an OpenAPI specification, and turn an API contract into developer-facing documentation.
+
+Live documentation: https://bump.sh/waits/doc/tone-lord-api
+
+Source: https://github.com/genewaits/guitar-plugins-api
